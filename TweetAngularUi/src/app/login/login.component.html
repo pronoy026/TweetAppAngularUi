@@ -1,0 +1,67 @@
+<div>
+    <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="d-flex justify-content-center">
+                    <div class="card shadow" style="padding: 50px; height: 100%; width: 500px">
+                        <form #signinForm="ngForm">
+                            <div style="text-align: center">
+                                <h5 style="color: black">Log In</h5>
+                            </div>
+                            <!-- userid -->
+                            <div class="form-group">
+                                <label for="exampleInputuserid1">Userid</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-envelope"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" #userid="ngModel" name="signinuserid"
+                                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                        class="form-control" placeholder="Enter your userid" id="useridSignIn"
+                                        [(ngModel)]="signinData.Userid" required>
+                                </div>
+                                <small class="text-danger"
+                                    *ngIf="userid.invalid && (userid.dirty || userid.touched)">Please enter valid userid!</small>
+                            </div>
+                            <!-- password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="password" #password="ngModel" name="signinPassword"
+                                        class="form-control" placeholder="Enter your password" id="signinPassword"
+                                        [(ngModel)]="signinData.Password" required>
+                                </div>
+                                <small class="text-danger"
+                                    *ngIf="password.invalid && (password.dirty || password.touched)"> Please enter
+                                    password!</small>
+                                <!-- if userid or password is incorrect
+                            <small class="text-danger"> Sorry! userid or Password is incorrect! Please try again.</small> -->
+                            </div>
+                            <div><small class="text-danger">{{errmessage}}</small></div>
+                            <!-- forgot password -->
+                            <div class="mb-3">
+                                <div>
+                                    <a routerLink="" style="padding-left : 20px">Forgot password?</a>
+                                </div>
+                            </div>
+                            <!-- form check -->
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" name="signinCheck" id="signinCheck"
+                                    ngModel>
+                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                            </div>
+                            <button [disabled]="password.invalid || userid.invalid" type="button"
+                                class="btn btn-outline-primary" (click)="login()">Log In</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

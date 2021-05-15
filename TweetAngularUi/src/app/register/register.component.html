@@ -1,0 +1,147 @@
+<div>
+    <div class="container" style="padding-top: 10px; padding-bottom: 10px;">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="d-flex justify-content-center">
+                    <div class="card shadow" style="padding: 50px; height: 100%; width: 500px">
+                        <form #Form="ngForm">
+                            <div style="text-align: center">
+                                <h5 style="color: black">Register</h5>
+                            </div>
+                            <!-- First Name -->
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" #fname="ngModel"
+                                        placeholder="Enter first name" id="Fname" name="FirstName"
+                                        [(ngModel)]="registerData.firstname" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="fname.valid || fname.untouched"> Name is
+                                    required!</small>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" #lname="ngModel"
+                                        placeholder="Enter last name" id="LName" name="LastName"
+                                        [(ngModel)]="registerData.lastname" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="lname.valid || lname.untouched"> Name is
+                                    required!</small>
+                            </div>
+                            <!-- email -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email Address</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-envelope"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" #email="ngModel"
+                                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+                                        class="form-control" placeholder="Enter your email" id="userEmail" name="Email"
+                                        [(ngModel)]="registerData.email" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="email.valid || email.untouched"> Please enter
+                                    valid email address!</small>
+                            </div>
+                            <!-- User Id -->
+                            <div class="form-group">
+                                <label>User Id</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-user"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" #userid="ngModel"
+                                        placeholder="Enter user id" id="Userid" name="Userid"
+                                        [(ngModel)]="registerData.userid" required>
+                                </div>
+                                <a (click)="checkUserid()>
+                                    <small class="text-success"> user id is
+                                    required!</small>
+                                </a>
+                                <small class="text-danger" [class.d-none]="userid.valid || userid.untouched"> user id is
+                                    required!</small>
+                            </div>
+                            <!-- phone no -->
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone No</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-phone"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="tel" #phone="ngModel" pattern="^\d{10}$" class="form-control"
+                                        placeholder="e.g. - 9876543210" id="userPhoneNo" name="Phone"
+                                        [(ngModel)]="registerData.phoneNumber" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="phone.valid || phone.untouched"> Enter valid
+                                    Phone No of 10 digits.</small>
+                            </div>
+                            <!-- password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="passwordSignIn" #password="ngModel"
+                                        placeholder="Create password" id="userCreatePassword" name="Password"
+                                        [(ngModel)]="registerData.password" required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="password.valid || password.untouched"> Please
+                                    enter a new password.</small>
+                            </div>
+                            <!-- confirm password -->
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Confirm Password</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-lock"
+                                                aria-hidden="true"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" id="passwordSignIn"
+                                        placeholder="Confirm password" id="userConfirmPassword" #cpassword="ngModel"
+                                        name="ConfirmPassword" ngModel required>
+                                </div>
+                                <small class="text-danger" [class.d-none]="cpassword.valid || cpassword.untouched">
+                                    Please
+                                    enter confirm password</small>
+                                <small class="text-danger"
+                                    *ngIf=" cpassword.touched && cpassword.value!=password.value && !cpassword.errors?.required">
+                                    Password and Confirm Password should be same.</small>
+                            </div>
+                            <!-- agree to terms and conditions form check -->
+                            <div class="form-check mb-3">
+                                <input type="checkbox" #ucheck="ngModel" class="form-check-input" id="userSignupCheck"
+                                    name="Check" ngModel required>
+                                <label class="form-check-label" for="exampleCheck1">Agree to the <a href="#">terms and
+                                        conditions</a></label>
+                            </div>
+
+                            <div>
+                                <small class="text-danger" [class.d-none]="ucheck.value== true|| ucheck.pristine">
+                                    Please agree to the terms and conditions.
+                                </small>
+                            </div>
+                            <button type="button" [disabled]="Form.form.invalid" class="btn btn-outline-primary"
+                                (click)="register()">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
