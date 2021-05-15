@@ -13,13 +13,13 @@
                 <a class="nav-link" routerLink='/register'>Register</a>
             </li>
             <li class="nav-item active navspecs">
-                <a class="nav-link" href="#">Tweets</a>
+                <a class="nav-link" routerLink='/tweets'>Tweets</a>
             </li>
             <li class="nav-item active navspecs">
-                <a class="nav-link" href="#">All users</a>
+                <a class="nav-link" routerLink='/allusers'>All users</a>
             </li>
             <li class="nav-item active navspecs">
-                <a class="nav-link" href="#">Log out</a>
+                <a class="nav-link" (click)="logout()" style="cursor: pointer;">Log out</a>
             </li>
         </ul>
     </div>

@@ -9,7 +9,11 @@ import { RegisterComponent } from './register/register.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { TweetsComponent } from './tweets/tweets.component';
+import { AllusersComponent } from './allusers/allusers.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { UsersettingsComponent } from './usersettings/usersettings.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { HomeComponent } from './home/home.component'
     LoginComponent,
     RegisterComponent,
     PagenotfoundComponent,
-    HomeComponent
+    HomeComponent,
+    TweetsComponent,
+    AllusersComponent,
+    UserdashboardComponent,
+    UsersettingsComponent
   ],
   imports: [
     BrowserModule,

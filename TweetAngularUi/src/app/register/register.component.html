@@ -67,11 +67,8 @@
                                         placeholder="Enter user id" id="Userid" name="Userid"
                                         [(ngModel)]="registerData.userid" required>
                                 </div>
-                                <a (click)="checkUserid()>
-                                    <small class="text-success"> user id is
-                                    required!</small>
-                                </a>
-                                <small class="text-danger" [class.d-none]="userid.valid || userid.untouched"> user id is
+                                <small class="text-danger" [class.d-none]="userid.valid || userid.untouched"> Valid user
+                                    id is
                                     required!</small>
                             </div>
                             <!-- phone no -->
