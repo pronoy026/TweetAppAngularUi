@@ -1,0 +1,43 @@
+.tweet {
+    padding: 3%;
+}
+
+.col-md-3 {
+    background: #007BFF;
+    color: white;
+    padding: 4%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.tweet-info {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.tweet-info img {
+    margin-bottom: 15%;
+}
+
+.tweet-info h2 {
+    margin-bottom: 10%;
+}
+
+.col-md-9 {
+    background: #fff;
+    padding: 1%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.tweet-form label {
+    font-weight: 600;
+}
+
+.tweet-form button {
+    float: right;
+}
+
+.tweet-form button:focus {
+    box-shadow: none;
+}
