@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,25 +9,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
+  errmessage=""
   registerData = {
     firstname : "",
     lastname : "",
     email : "",
-    userid : "",
+    username : "",
     password: "",
-    phoneNumber: ""
+    phone: ""
   }
-  constructor() { }
+  constructor( private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   checkUserid() {
-    console.log(this.registerData.userid)
+    console.log(this.registerData.username)
   }
 
   register() {
     console.log(this.registerData)
+    this.auth.registerUser(this.registerData)
+        .subscribe(
+          res => {
+            console.log(res)
+            localStorage.setItem('token', res.token)
+            // localStorage.setItem('email', res.email)
+            this.router.navigate(['/tweets'])
+          },
+          err => {
+            this.errmessage = err.error
+          }
+        )
     }
 
 }

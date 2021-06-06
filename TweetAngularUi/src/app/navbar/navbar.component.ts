@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    console.log("logout works!")
+    var current = new Date()
+    console.log(typeof(current))
+    console.log(new Date())
   }
 }

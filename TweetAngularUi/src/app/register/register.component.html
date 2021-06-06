@@ -57,17 +57,18 @@
                             </div>
                             <!-- User Id -->
                             <div class="form-group">
-                                <label>User Id</label>
+                                <label>Username</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-user"
                                                 aria-hidden="true"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" #userid="ngModel"
-                                        placeholder="Enter user id" id="Userid" name="Userid"
-                                        [(ngModel)]="registerData.userid" required>
+                                    <input type="text" class="form-control" #username="ngModel"
+                                        placeholder="Enter username" id="Username" name="Username"
+                                        [(ngModel)]="registerData.username" required>
                                 </div>
-                                <small class="text-danger" [class.d-none]="userid.valid || userid.untouched"> Valid user
+                                <small class="text-danger" [class.d-none]="username.valid || username.untouched"> Valid
+                                    user
                                     id is
                                     required!</small>
                             </div>
@@ -81,7 +82,7 @@
                                     </div>
                                     <input type="tel" #phone="ngModel" pattern="^\d{10}$" class="form-control"
                                         placeholder="e.g. - 9876543210" id="userPhoneNo" name="Phone"
-                                        [(ngModel)]="registerData.phoneNumber" required>
+                                        [(ngModel)]="registerData.phone" required>
                                 </div>
                                 <small class="text-danger" [class.d-none]="phone.valid || phone.untouched"> Enter valid
                                     Phone No of 10 digits.</small>
@@ -131,6 +132,11 @@
                             <div>
                                 <small class="text-danger" [class.d-none]="ucheck.value== true|| ucheck.pristine">
                                     Please agree to the terms and conditions.
+                                </small>
+                            </div>
+                            <div style="padding-bottom: 5px">
+                                <small class="text-danger">
+                                    {{errmessage}}
                                 </small>
                             </div>
                             <button type="button" [disabled]="Form.form.invalid" class="btn btn-outline-primary"
