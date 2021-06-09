@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TweetService } from '../tweet.service';
 
 @Component({
   selector: 'app-tweets',
@@ -8,15 +9,29 @@ import { Component, OnInit } from '@angular/core';
 export class TweetsComponent implements OnInit {
 
   userData = {
-    firstname: "Pronoy",
-    lastname: "Sarkar",
-    userid: "prosrkr"
+    firstname: "",
+    lastname: "",
+    id: ""
   }
-  username= this.userData.firstname+" "+this.userData.lastname
+  username= ""
+  user = localStorage.getItem("username")
 
-  constructor() { }
+  constructor(private tweetservice: TweetService) { }
 
   ngOnInit(): void {
+    
+
+    this.tweetservice.registerUser(this.user)
+        .subscribe(
+          res => {
+            console.log(res)
+            this.userData=res
+            this.username= res.firstname+" "+res.lastname
+          },
+          err => {
+            console.log(err)
+          }
+        )
   }
 
 }

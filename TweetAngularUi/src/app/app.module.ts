@@ -14,6 +14,11 @@ import { TweetsComponent } from './tweets/tweets.component';
 import { AllusersComponent } from './allusers/allusers.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 import { UsersettingsComponent } from './usersettings/usersettings.component'
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { DatashareService } from './datashare.service';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { TweetService } from './tweet.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { UsersettingsComponent } from './usersettings/usersettings.component'
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ AuthService, AuthGuard, DatashareService,
+    { provide : HTTP_INTERCEPTORS, useClass : TokenInterceptorService, multi : true },
+  TweetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

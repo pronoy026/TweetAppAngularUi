@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllusersComponent } from './allusers/allusers.component';
+import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
@@ -21,9 +22,10 @@ const routes: Routes = [
     children: [
       { path: "dashboard", component: UserdashboardComponent},
       { path: "settings", component: UsersettingsComponent}
-    ]
+    ],
+    canActivate: [AuthGuard]
    },
-  { path: 'allusers', component: AllusersComponent },
+  { path: 'allusers', component: AllusersComponent, canActivate: [AuthGuard]},
   { path: '**', component: PagenotfoundComponent },
 ];
 

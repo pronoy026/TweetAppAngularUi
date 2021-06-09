@@ -11,19 +11,18 @@
                             </div>
                             <!-- userid -->
                             <div class="form-group">
-                                <label for="exampleInputuserid1">Userid</label>
+                                <label for="exampleInputuserid1">Username</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-envelope"
                                                 aria-hidden="true"></i></span>
                                     </div>
                                     <input type="text" #userid="ngModel" name="signinuserid"
-                                        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
                                         class="form-control" placeholder="Enter your userid" id="useridSignIn"
-                                        [(ngModel)]="signinData.Userid" required>
+                                        [(ngModel)]="signinData.username" required>
                                 </div>
                                 <small class="text-danger"
-                                    *ngIf="userid.invalid && (userid.dirty || userid.touched)">Please enter valid userid!</small>
+                                    *ngIf="userid.invalid && (userid.dirty || userid.touched)">Please enter valid username!</small>
                             </div>
                             <!-- password -->
                             <div class="form-group">
@@ -35,7 +34,7 @@
                                     </div>
                                     <input type="password" #password="ngModel" name="signinPassword"
                                         class="form-control" placeholder="Enter your password" id="signinPassword"
-                                        [(ngModel)]="signinData.Password" required>
+                                        [(ngModel)]="signinData.password" required>
                                 </div>
                                 <small class="text-danger"
                                     *ngIf="password.invalid && (password.dirty || password.touched)"> Please enter
@@ -43,19 +42,7 @@
                                 <!-- if userid or password is incorrect
                             <small class="text-danger"> Sorry! userid or Password is incorrect! Please try again.</small> -->
                             </div>
-                            <div><small class="text-danger">{{errmessage}}</small></div>
-                            <!-- forgot password -->
-                            <div class="mb-3">
-                                <div>
-                                    <a routerLink="" style="padding-left : 20px">Forgot password?</a>
-                                </div>
-                            </div>
-                            <!-- form check -->
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" name="signinCheck" id="signinCheck"
-                                    ngModel>
-                                <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                            </div>
+                            <div style="margin-bottom: 10px;"><small class="text-danger">{{errmessage}}</small></div>
                             <button [disabled]="password.invalid || userid.invalid" type="button"
                                 class="btn btn-outline-primary" (click)="login()">Log In</button>
                         </form>

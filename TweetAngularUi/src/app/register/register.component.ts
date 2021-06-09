@@ -34,8 +34,8 @@ export class RegisterComponent implements OnInit {
           res => {
             console.log(res)
             localStorage.setItem('token', res.token)
-            // localStorage.setItem('email', res.email)
-            this.router.navigate(['/tweets'])
+            localStorage.setItem('username', res.username)
+            this.router.navigate(['/tweets/dashboard'])
           },
           err => {
             this.errmessage = err.error
