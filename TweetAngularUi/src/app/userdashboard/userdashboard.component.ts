@@ -11,63 +11,85 @@ export class UserdashboardComponent implements OnInit {
   payment: any
   doCommentToggler: boolean
   seeCommentsToggler: boolean
-  tweet={
-    content : "",
-		like : 0,
-		commentCount : 0,
-		time : new Date(),
-		username : localStorage.getItem('username') ,
-		comments : []
+  tweet = {
+    content: "",
+    like: 0,
+    commentCount: 0,
+    time: new Date(),
+    username: localStorage.getItem('username'),
+    comments: []
   }
-  modalMessage=""
+  modalMessage = ""
   Tweets
+  currentComment = ""
 
   constructor(private tweetService: TweetService) { }
 
   ngOnInit(): void {
     this.tweetService.getAllTweets()
-    .subscribe(
-      res => {
-        console.log(res)
-      },
-      err => {
-        console.log(err)
-      }
-    )
+      .subscribe(
+        res => {
+          console.log(res)
+          res.forEach(element => {
+            element.commentboxToggler = false
+            element.commentsToggler = false
+            element.commentNow = ""
+          });
+          this.Tweets = res
+          console.log(this.Tweets)
+        },
+        err => {
+          console.log(err)
+        }
+      )
   }
 
-  toggleCommentBox() {
-    this.doCommentToggler= !this.doCommentToggler
+  toggleCommentBox(tweet) {
+    this.Tweets.forEach(element => {
+      if (element.tid == tweet.tid) {
+        element.commentboxToggler = !element.commentboxToggler
+      }
+    });
     console.log("comment box toggled")
   }
 
   postTweet() {
     console.log(this.tweet)
-    if(this.tweet.content=="")
-      this.modalMessage="Please write something before posting!"
+    if (this.tweet.content == "")
+      this.modalMessage = "Please write something before posting!"
     else {
       this.tweetService.postTweet(this.tweet)
         .subscribe(
           res => {
             console.log(res)
-            this.modalMessage="Tweet posted successfully!"
+            this.modalMessage = "Tweet posted successfully!"
           },
           err => {
             console.log(err)
-            this.modalMessage="Tweet posted successfully!"
+            this.modalMessage = "Tweet posted successfully!"
           }
         )
     }
-    this.tweet.content=""
+    this.tweet.content = ""
   }
 
-  seeComments() {
-    this.seeCommentsToggler= !this.seeCommentsToggler
+  seeComments(tweet) {
+    this.Tweets.forEach(element => {
+      if (element.tid == tweet.tid) {
+        element.commentsToggler = !element.commentsToggler
+      }
+    });
     console.log("see comments");
   }
 
-  replyComment() {
-    console.log("replied")
+  replyComment(tweet) {
+    console.log(tweet.commentNow)
+    //POST comment here
+    this.Tweets.forEach(element => {
+      if (element.tid == tweet.tid) {
+        element.commentNow = ""
+      }
+    });
   }
 
   toCommentBox() {
