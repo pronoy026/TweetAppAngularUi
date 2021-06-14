@@ -23,4 +23,9 @@ export class TweetService {
     let getAllTweetsUrl = this.config.apiServer+"/all"
     return this.http.get<any>(getAllTweetsUrl)
   }
+
+  postComment(username, id, comment) {
+    let postCommentUrl = this.config.apiServer+"/"+username+"/reply/"+id
+    return this.http.post<any>(postCommentUrl, comment)
+  }
 }

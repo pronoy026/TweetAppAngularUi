@@ -26,6 +26,10 @@ export class UserdashboardComponent implements OnInit {
   constructor(private tweetService: TweetService) { }
 
   ngOnInit(): void {
+    this.loadAllTweetsData()
+  }
+
+  loadAllTweetsData() {
     this.tweetService.getAllTweets()
       .subscribe(
         res => {
@@ -63,10 +67,12 @@ export class UserdashboardComponent implements OnInit {
           res => {
             console.log(res)
             this.modalMessage = "Tweet posted successfully!"
+            this.loadAllTweetsData()
           },
           err => {
             console.log(err)
             this.modalMessage = "Tweet posted successfully!"
+            this.loadAllTweetsData()
           }
         )
     }
@@ -83,13 +89,37 @@ export class UserdashboardComponent implements OnInit {
   }
 
   replyComment(tweet) {
-    console.log(tweet.commentNow)
-    //POST comment here
-    this.Tweets.forEach(element => {
-      if (element.tid == tweet.tid) {
-        element.commentNow = ""
-      }
-    });
+    let comment = {
+      content : tweet.commentNow,
+      username : localStorage.getItem("username"),
+      name: tweet.firstname+" "+tweet.lastname ,
+      time: new Date()
+    }
+    console.log(comment)
+    console.log(tweet)
+    this.tweetService.postComment(comment.username, tweet.tid, comment)
+        .subscribe(
+          res => {
+            console.log(res)
+            this.Tweets.forEach(element => {
+              if (element.tid == tweet.tid) {
+                element.commentNow = ""
+              }
+              this.modalMessage = "Comment posted successfully!"
+              this.loadAllTweetsData()
+            });
+          },
+          err => {
+            console.log(err)
+            this.Tweets.forEach(element => {
+              if (element.tid == tweet.tid) {
+                element.commentNow = ""
+              }
+              this.modalMessage = "Comment posted successfully!"
+              this.loadAllTweetsData()
+            });
+          }
+        )
   }
 
   toCommentBox() {

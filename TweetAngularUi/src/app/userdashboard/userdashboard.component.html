@@ -61,7 +61,7 @@
                     </div>
                     <div class="col-md-10">
                         <div>
-                            <a href="" style="font-weight: bold;">{{tweet.username}}</a>
+                            <a href="" style="font-weight: bold;">{{tweet.firstname}} {{tweet.lastname}}</a>
                             <a href=""
                                 style="font-style: italic; color: brown; margin-left: 2%; margin-right: 2%;">@{{tweet.username}}</a>
                             • {{tweet.time}}
@@ -86,12 +86,13 @@
                             <div class="tweet-form">
                                 <div class="form-group">
                                     <div class="col-sm-10">
-                                        <textarea class="form-control" rows="2" name="commentNow" id="comment" [(ngModel)]="tweet.commentNow" required></textarea>
+                                        <textarea class="form-control" rows="2" name="commentNow" id="comment"
+                                            [(ngModel)]="tweet.commentNow" required></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <button type="submit" class="btn btn-outline-primary"
+                                        <button type="submit" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal"
                                             (click)="replyComment(tweet)">comment</button>
                                     </div>
                                 </div>
@@ -106,17 +107,16 @@
                     <!-- all comments -->
                     <div class="col-md-8" style="background-color: rgb(166, 213, 214); padding: 1%; border-radius: 1%;">
                         <!-- single comment -->
-                        <div *ngFor="let number of [0,1,2,3,4]"
+                        <div *ngFor="let comment of tweet.comments; index as j"
                             style="background-color:rgb(218, 228, 252); padding: 1%; margin:2%; font-size: small;">
                             <div>
-                                <a href="" style="font-weight: bold;">Pitter Rouge</a>
+                                <a href="" style="font-weight: bold;">{{comment.name}}</a>
                                 <a href=""
-                                    style="font-style: italic; color: brown; margin-left: 2%; margin-right: 2%;">@pitrouge007</a>
-                                • 3h ago
+                                    style="font-style: italic; color: brown; margin-left: 2%; margin-right: 2%;">@{{comment.username}}</a>
+                                • {{comment.time}}
                             </div>
                             <div>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In numquam a laborum ad magnam
-                                esse
+                                {{comment.content}}
                             </div>
                             <div style="margin-top: 1%">
                                 <b style="font-style: italic; cursor: pointer; color: #007bff;"
